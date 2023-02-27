@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .new {
+            background-color: #E6F2ED;
+        }
+        .updated {
+            background-color: #E8F2FB;
+        }
+        .deleted {
+            background-color: #FFEFED;
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+    <main>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>code</td>
+                        <td>name</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in object_list %}
+                        <tr 
+                            {% if item.state == "updated" %}
+                                class="updated"
+                            {% elif item.state == "deleted" %}
+                                class="deleted"
+                            {% elif item.state == "new" %}
+                                class="new"
+                            {% endif %}
+                        >
+                            <td>{{ item.object.id }}</td>
+                            <td>{{ item.object.code }}</td>
+                            <td>{{ item.object.name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+</html>
